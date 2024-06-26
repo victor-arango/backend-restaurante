@@ -1,5 +1,6 @@
 import express from 'express'
 import 'dotenv/config'
+import logger from 'morgan'
 // Rutas
 import rol from './src/routes/RolRoute.js'
 
@@ -12,7 +13,7 @@ app.get('/', function (req, res) {
 
 // Llamado a las rutas.
 rol(app)
-
+app.use(logger('dev'))
 app.listen(PORT, () => {
   console.log(`server running to port ${PORT}`)
 })
