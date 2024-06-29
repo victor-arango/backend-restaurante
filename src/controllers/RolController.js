@@ -2,15 +2,15 @@ import rolesModel from '../models/RolModel.js'
 
 const rolesController = {
   async getAll (req, res, next) {
-    try {
-      const data = await rolesModel.getAll()
-      return res.status(201).json(data)
-    } catch (error) {
-      return res.status(501).json({
-        success: false,
-        message: 'Error al obtener los roles'
-      })
-    }
+    const roles = await rolesModel.findAll()
+    res.json({ roles })
+  },
+
+  async getRoleById (req, res, next) {
+    const id = req.params.id
+    const role = await rolesModel.findByPk(id)
+    if (!role) { res.json({ msg: `No existe el role con id ${id}` }) }
+    res.json({ role })
   }
 
 }

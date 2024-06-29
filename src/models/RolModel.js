@@ -12,18 +12,8 @@ const rolesModel = sequelize.define('roles', {
     allowNull: false
   }
 }, {
-  timestamps: false,
+  timestamps: true,
   tableName: 'roles'
 })
-
-rolesModel.getAll = async () => {
-  try {
-    const roles = await rolesModel.findAll()
-    return roles
-  } catch (error) {
-    console.error('Error obteniendo los roles:', error)
-    throw error
-  }
-}
 
 export default rolesModel

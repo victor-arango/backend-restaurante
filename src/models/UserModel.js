@@ -1,10 +1,9 @@
 import { sequelize } from '../middleware/config.js'
 import { DataTypes } from 'sequelize'
-import { Role } from '../models/RolModel.js'
 
-const usersModel = sequelize.define('users', {
+const userModel = sequelize.define('users', {
   user_id: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     primaryKey: true,
     autoIncrement: true
   },
@@ -24,7 +23,6 @@ const usersModel = sequelize.define('users', {
   },
   role_id: {
     type: DataTypes.INTEGER,
-    allowNull: false,
     defaultValue: 1,
     references: {
       model: 'roles',
@@ -40,16 +38,4 @@ const usersModel = sequelize.define('users', {
   tableName: 'users'
 })
 
-usersModel.belongsTo(Role, { foreignKey: 'role_id' })
-
-usersModel.register = async (user) => {
-  try {
-    const user = await usersModel.create()
-    return user
-  } catch (error) {
-    console.error('Error al registrar el usuario:', error)
-    throw error
-  }
-}
-
-export default usersModel
+export default userModel
