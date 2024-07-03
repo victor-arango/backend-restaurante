@@ -1,11 +1,11 @@
 import { sequelize } from '../middleware/config.js'
-import { DataTypes } from 'sequelize'
+import { DataTypes, literal } from 'sequelize'
 
 const userModel = sequelize.define('users', {
   user_id: {
     type: DataTypes.UUID,
-    primaryKey: true,
-    autoIncrement: true
+    defaultValue: literal('gen_random_uuid()'),
+    primaryKey: true
   },
   name: {
     type: DataTypes.STRING,
@@ -23,7 +23,7 @@ const userModel = sequelize.define('users', {
   },
   role_id: {
     type: DataTypes.INTEGER,
-    defaultValue: 1,
+    defaultValue: 2,
     references: {
       model: 'roles',
       key: 'role_id'

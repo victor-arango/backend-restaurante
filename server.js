@@ -6,7 +6,7 @@ import rol from './src/routes/RolRoute.js'
 import user from './src/routes/UserRoute.js'
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 const PORT = process.env.PORT || 4321
 // app.use(cors)
 // app.disable('x-powered-by')
